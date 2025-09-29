@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>Test html!</title>
+<head>
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/test.css') }}"> -->
+</head>
+<body>
+    {% extends 'base.html' %}
+        {% block content %}
+        {% if name %}
+            <h1 class="greeting user">Hello {{ name }}!</h1>
+        {% else %}
+            <h1 class="greeting">Hello world!</h1>
+        {% endif %}
+    {% endblock %}
+
+</body>
+</html>
