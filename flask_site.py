@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_file, make_response
 from flask_sqlalchemy import SQLAlchemy
+from io import BytesIO
 from markupsafe import escape
+from weasyprint import HTML
 
 app = Flask(__name__)
 
@@ -56,3 +58,20 @@ def delete(idNum):
 @app.route("/hello/<user_name>")
 def hello_user(user_name=None):
     return render_template('home.html', name=user_name)
+
+@app.route('/report/preview')
+def report_preview():
+    report_content = "This is the report data."
+    return render_template('report.html', report_content=report_content)
+
+@app.route('/report/download')
+def report_download():
+    rendered_html = render_template('report.html', report_content="This is the report data.")
+    pdf_file = BystesIO()
+    HTML(string=rendered_html).write_pdf(pdf_file)
+    pdf_file.seek(0)
+
+    response = make_response(pdf_file.read())
+    response.headers['Content-Type'] = "application/pdf"
+    response.headers['Content-Disposition'] = 'attachment; filename=report.pdf'
+    return response

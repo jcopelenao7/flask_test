@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Report Preview</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/report_styles.css') }}">
+</head>
+<body>
+    <div id="report-content">
+        <h1>Report Title</h1>
+        <p>This is an exmaple report generated in Flask.</p>
+        <p>{{ report_content }}</p>
+    </div>
+    <button onclick="window.print()">Print</button>
+</body>
+</html>

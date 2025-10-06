@@ -1,0 +1,11 @@
+@media print {
+    button {
+        display: none;
+    }
+    body {
+        font-family: Arial, sans-serif;
+    }
+}
+@page {
+    margin: 5mm;
+}
